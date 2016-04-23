@@ -6,9 +6,10 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
+import argparse
 import os
 from flask import Flask, render_template, request, redirect, url_for
-import path_route
+from path_route import path_route
 
 app = Flask(__name__)
 
@@ -32,7 +33,7 @@ def about():
 
 @app.route('/route')
 def route_request():
-    return path_route.path_route()
+    return path_route()
 
 
 
@@ -64,5 +65,18 @@ def page_not_found(error):
     return render_template('404.html'), 404
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    command_arguments = argparse.ArgumentParser(description="Viewer for geo A/B testing stand")
+    command_arguments.add_argument('-port', default="55555", help='port to work on', type=int)
+    command_arguments.add_argument('-path_to_static', default=None, help='path to static folder \
+                                of working viewer, in this folder funnel images will be saved')
+    command_arguments.add_argument('-production', default=False, action='store_true',
+                                    help='run in gevent wsgi container')
+    args = command_arguments.parse_args()
+
+    if args.production is False:
+        app.run(debug=True, host='0.0.0.0', port=args.port, passthrough_errors=True)
+    else:
+        from gevent.wsgi import WSGIServer
+        http_server = WSGIServer(('', args.port), app)
+        http_server.serve_forever()

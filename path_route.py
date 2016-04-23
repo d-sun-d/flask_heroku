@@ -9,15 +9,15 @@ import pprint
 import traceback
 
 DEFAULT_LOCATIONS_YANDEX_RTEXT = {
-    'Афимолл':"55.748070%2C37.536850",
+    'Novotel Moscow City':"55.748070%2C37.536850",
     "Sheremetievo":"55.962870%2C37.405975"
 }
-IS_DEBUG = True
+IS_DEBUG = False
 
 def get_rtext_from_geocoder(location):
     #https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Домодедово
     print location
-    geocode  = (location.decode("utf-8")+", Москва".decode("utf-8")).encode("utf-8")
+    geocode  = (location.decode("utf-8")+" Moscow".decode("utf-8")).encode("utf-8")
     response = retry_request(
         "GET", "https://geocode-maps.yandex.ru/1.x/?format=json&geocode=" \
                +geocode)
@@ -33,12 +33,13 @@ def get_rtext_from_geocoder(location):
 
 
 def make_yandex_url(params):
-    # fromloc_rtext = DEFAULT_LOCATIONS_YANDEX_RTEXT.get(
-    #     params.get("fromloc"),None)
-    # toloc_rtext = DEFAULT_LOCATIONS_YANDEX_RTEXT.get(
-    #     params.get("toloc"), "55.748070%2C37.536850")
     fromloc_rtext = get_rtext_from_geocoder(params.get("fromloc", 'Отель Novotel Москва Сити'))
     toloc_rtext = get_rtext_from_geocoder(params.get("toloc", "Аэропорт Шереметьево"))
+    fromloc_rtext = DEFAULT_LOCATIONS_YANDEX_RTEXT.get(
+         params.get("fromloc"),fromloc_rtext)
+    toloc_rtext = DEFAULT_LOCATIONS_YANDEX_RTEXT.get(
+         params.get("toloc"), toloc_rtext)
+
     if fromloc_rtext is None or toloc_rtext is None:
         return "Неудалось построить маршрут"
     return "https://yandex.ru/maps/?rtext=" \
