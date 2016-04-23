@@ -12,12 +12,12 @@ DEFAULT_LOCATIONS_YANDEX_RTEXT = {
     'Novotel Moscow City':"55.748070%2C37.536850",
     "Sheremetievo":"55.962870%2C37.405975"
 }
-IS_DEBUG = False
+IS_DEBUG = True
 
 def get_rtext_from_geocoder(location):
     #https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Домодедово
     print location
-    geocode  = (location.decode("utf-8")+" Moscow".decode("utf-8")).encode("utf-8")
+    geocode  = (location+" Moscow".decode("utf-8"))
     response = retry_request(
         "GET", "https://geocode-maps.yandex.ru/1.x/?format=json&geocode=" \
                +geocode)
