@@ -15,3 +15,10 @@ mock
 # ----------------------
 gevent
 gunicorn
+
+
+# ----------------------
+# Work
+# ----------------------
+requests
+simplejson
