@@ -16,7 +16,7 @@ IS_DEBUG = True
 
 def get_rtext_from_geocoder(location):
     #https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Домодедово
-    print location
+    #print location
     try:
         geocode  = (location+" Moscow".decode("utf-8"))
     except:
