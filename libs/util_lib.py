@@ -23,7 +23,7 @@ def retry_request(
         skip_codes_dict=YANDEX_API_ERROR_CODES,
         debug=True):
     if debug:
-        print "start: "+method+" "+url
+        print "start: "+method+" "+url.encode("utf-8")
     if method == "POST":
         response = requests.post(url,
                              headers=headers,
