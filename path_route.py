@@ -53,7 +53,6 @@ def path_route():
         response.messages.append("==response==")
     try:
         response.messages.append(make_yandex_url(params))
-        a =1/0
     except:
         print "Error in requst"
         if IS_DEBUG:
