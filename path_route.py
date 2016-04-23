@@ -53,8 +53,9 @@ def path_route():
     try:
         response.messages.append(make_yandex_url(params))
     except:
+        print "Error in requst"
         if IS_DEBUG:
-            response.messages.append(tb = traceback.format_exc())
+            response.messages.append(traceback.format_exc())
         else:
             response.messages.append("Что-т о пошдо не так")
     return make_response(jsonify(response.to_dict()), 200)
