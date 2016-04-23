@@ -8,6 +8,7 @@ This file creates your application.
 
 import os
 from flask import Flask, render_template, request, redirect, url_for
+import path_route
 
 app = Flask(__name__)
 
@@ -28,6 +29,11 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html')
+
+@app.route('/route')
+def route_request():
+    return path_route.path_route()
+
 
 
 ###
