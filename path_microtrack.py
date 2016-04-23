@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask import render_template, jsonify, make_response
 from flask import request
 import libs.yandex_translate as ytr
@@ -19,8 +21,7 @@ def path_microtrack_add():
     redis_db["tasks"][id] = params
 
     response = c1_client.ActionResponse()
-    new_task_text = ytr.translate("Персонал оповещен, выполним в ближайшее время.  Номер вашей заявки ", params["original_lang"])
-    new_task_text = ".\n\n".join(new_task_text.split("."))
+    new_task_text = ytr.translate("Персонал оповещен, выполним в ближайшее время.\n\n  Номер вашей заявки ", params["original_lang"])
     response.messages.append(new_task_text+" id:"+str(id))
 
     return make_response(jsonify(response.to_dict()), 200)
