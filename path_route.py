@@ -50,7 +50,6 @@ def path_route():
         response.messages.append("==debug==")
         response.messages.append("Params: "+str(params))
         response.messages.append("==response==")
-    """
     try:
         response.messages.append(make_yandex_url(params))
     except:
@@ -58,5 +57,4 @@ def path_route():
             response.messages.append(tb = traceback.format_exc())
         else:
             response.messages.append("Что-т о пошдо не так")
-    """
     return make_response(jsonify(response.to_dict()), 200)
