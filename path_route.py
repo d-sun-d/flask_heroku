@@ -25,7 +25,6 @@ def get_rtext_from_geocoder(location):
     try:
         coords_line =  res_json["response"]['GeoObjectCollection']['featureMember'][0]['GeoObject']["Point"]["pos"]
         rtext = "%2C".join(coords_line.split(" ")[::-1])
-        a =1/0
     except:
         rtext = None
     return rtext
