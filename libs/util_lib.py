@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-#import requests
-#import time
-#import json
+import requests
+import time
+import json
 
 YANDEX_API_KEY="trnsl.1.1.20160423T081552Z.391c7bf6d2b74e3b.d83e1c1fa045228689a2328a5214cff12b66e73f"
 
