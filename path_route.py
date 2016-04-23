@@ -17,9 +17,10 @@ IS_DEBUG = True
 def get_rtext_from_geocoder(location):
     #https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Домодедово
     print location
+    geocode  = location.decode("utf-8")+", Москва".decode("utf-8")
     response = retry_request(
         "GET", "https://geocode-maps.yandex.ru/1.x/?format=json&geocode=" \
-               +urllib2.quote(location+", Москва"))
+               +geocode)
     res_json = simplejson.loads(response.text)
     try:
         coords_line =  res_json["response"]['GeoObjectCollection']['featureMember'][0]['GeoObject']["Point"]["pos"]
@@ -56,7 +57,7 @@ def path_route():
         print "Error in requst"
         if IS_DEBUG:
             response.messages.append("Error in requst")
-            response.messages.append(urllib2.quote(traceback.format_exc()))
+            response.messages.append(traceback.format_exc())
             print traceback.format_exc()
         else:
             response.messages.append("Что-т о пошдо не так")
