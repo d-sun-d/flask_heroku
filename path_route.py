@@ -55,6 +55,7 @@ def path_route():
     except:
         print "Error in requst"
         if IS_DEBUG:
+            response.messages.append("Error in requst")
             response.messages.append(traceback.format_exc())
         else:
             response.messages.append("Что-т о пошдо не так")
