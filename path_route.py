@@ -17,7 +17,7 @@ IS_DEBUG = True
 def get_rtext_from_geocoder(location):
     #https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Домодедово
     print location
-    geocode  = location.decode("utf-8")+", Москва".decode("utf-8")
+    geocode  = (location.decode("utf-8")+", Москва".decode("utf-8")).encode("utf-8")
     response = retry_request(
         "GET", "https://geocode-maps.yandex.ru/1.x/?format=json&geocode=" \
                +geocode)
