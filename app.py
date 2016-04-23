@@ -10,6 +10,7 @@ import argparse
 import os
 from flask import Flask, render_template, request, redirect, url_for
 from path_route import path_route
+from path_microtrack import path_get_db, path_microtrack_add
 
 app = Flask(__name__)
 
@@ -35,6 +36,13 @@ def about():
 def route_request():
     return path_route()
 
+@app.route('/microtask/add')
+def route_add_task():
+    return path_microtrack_add()
+
+@app.route('/microtask/get_db')
+def route_get_db():
+    return path_get_db()
 
 
 ###
