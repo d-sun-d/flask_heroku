@@ -56,7 +56,8 @@ def path_route():
         print "Error in requst"
         if IS_DEBUG:
             response.messages.append("Error in requst")
-            response.messages.append(traceback.format_exc())
+            response.messages.append(urllib2.urlencode(traceback.format_exc()))
+            print traceback.format_exc()
         else:
             response.messages.append("Что-т о пошдо не так")
     return make_response(jsonify(response.to_dict()), 200)
