@@ -45,4 +45,7 @@ class CacheService:
 
     def save_db(self, db):
         db_string = simplejson.dumps(db)
-        self.set("REDES_DB", db_string)
+        try:
+            self.set("REDES_DB", db_string)
+        except:
+            print "Error on redis write"
