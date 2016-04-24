@@ -27,13 +27,13 @@ def path_microtrack_add():
 
     if params["category"] == "service":
         staff_text = ytr.translate(params["text"], params["original_lang"]+"-tg")
-        c1_client.send_push("StaffAccorDemoBot", [staff_text, str(id)])
+        c1_client.send_push("StaffAccorDemoBot", [staff_text, " id:"+str(id)])
     if params["category"] == "reception":
         staff_text = ytr.translate(params["text"], params["original_lang"]+"-tg")
-        c1_client.send_push("StaffAccorDemoBot", [staff_text, str(id)])
+        c1_client.send_push("StaffAccorDemoBot", [staff_text, " id:"+str(id)])
 
         reception_text = ytr.translate(params["text"], params["original_lang"]+"-en")
-        c1_client.send_push("ReceptionAccorDemoBot", [reception_text, "original lang="+params["original_lang"], params["text"], str(id)])
+        c1_client.send_push("ReceptionAccorDemoBot", [reception_text, "original lang="+params["original_lang"], params["text"], " id:"+str(id)])
 
 
     print "start save"
