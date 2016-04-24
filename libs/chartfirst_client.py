@@ -20,17 +20,17 @@ class ActionResponse(object):
 
 
 
-def send_push(botname = "StaffAccorDemoBot", message=[]):
+def send_push(botname = "StaffAccorDemoBot", messages=[], recever_id=1298445):
     data = {}
     headers = {}
     headers['Authorization'] = "Basic MzM4RkM1MzFGMzk4N0E1MTA4RkM0RTUzNzg2QUUwQjQwRUM0NjNCODo="
     headers["Content-Type"] = "application/json"
     data['Count'] = 1
-    data['Messages'] = message
+    data['Messages'] = messages
     data['ForcedState'] = None
     data['ForcedKeyboard'] = None
     params = {}
-    params["id"] = 1298445
+    params["id"] = int(recever_id)
     params["channel"] = "telegram"
 
     res = requests.post("https://ch-message-processor-test.azurewebsites.net/v1/push/"+botname,headers=headers, data=json.dumps(data), params=params)

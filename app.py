@@ -10,7 +10,7 @@ import argparse
 import os
 from flask import Flask, render_template, request, redirect, url_for
 from path_route import path_route
-from path_microtrack import path_get_db, path_microtrack_add
+from path_microtrack import path_get_db, path_microtrack_add, path_microtask_change_state
 from libs.redis_cache import CacheService
 
 app = Flask(__name__)
@@ -40,6 +40,10 @@ def route_request():
 @app.route('/microtask/add')
 def route_add_task():
     return path_microtrack_add()
+
+@app.route('/microtask/changestate')
+def changer_state():
+    return path_microtask_change_state()
 
 @app.route('/microtask/get_db')
 def route_get_db():
