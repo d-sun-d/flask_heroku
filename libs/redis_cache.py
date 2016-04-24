@@ -1,5 +1,6 @@
 import redis
 import simplejson
+import traceback
 
 REDIS_HOST = "ec2-54-83-34-248.compute-1.amazonaws.com"
 REDIS_PORT = 11209
@@ -27,6 +28,8 @@ class CacheService:
             resxult = self.r.get(key)
             return resxult
         except:
+            print "Error on redis get"
+            print traceback.format_exc()
             return None
 
     def set(self, key, value):
@@ -49,3 +52,4 @@ class CacheService:
             self.set("REDES_DB", db_string)
         except:
             print "Error on redis write"
+            print traceback.format_exc()
