@@ -1,11 +1,12 @@
 import redis
 import simplejson
 import traceback
+import os
 
 REDIS_HOST = "ec2-54-83-34-248.compute-1.amazonaws.com"
 REDIS_PORT = 11209
 REDIS_PASS = 'pvc0s3mj8bjj9em016172mohj9'
-
+REDIS_URL = "redis://h:pvc0s3mj8bjj9em016172mohj9@ec2-54-83-34-248.compute-1.amazonaws.com:11209"
 
 REDIS_DB_TEMPLATE = {
     "tasks":{},
@@ -15,7 +16,8 @@ REDIS_DB_TEMPLATE = {
 class CacheService:
     def __init__(self):
         print "start redis init"
-        self.r = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0, password=REDIS_PASS, ssl=True)
+        #self.r = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0, password=REDIS_PASS, ssl=True)
+        self.r = redis.from_url(REDIS_URL)
         print "end redis init"
 
     def ping(self):
