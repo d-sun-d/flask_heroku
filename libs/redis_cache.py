@@ -23,7 +23,11 @@ class CacheService:
 
     def get(self, key):
         # Get value by key from cache
-        return self.r.get(key)
+        try:
+            resxult = self.r.get(key)
+            return resxult
+        except:
+            return None
 
     def set(self, key, value):
         # Save value to cache
