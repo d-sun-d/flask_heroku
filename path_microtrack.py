@@ -30,7 +30,7 @@ def path_microtrack_add():
         staff_text = ytr.translate(params["text"], params["original_lang"]+"-tg")
         c1_client.send_push(
             "StaffAccorDemoBot",
-            [staff_text, " id:"+str(id)], keybord=[["Done"]])
+            ["N: "+str(id) +"\n\n"+ staff_text], keybord=[["Done"]])
 
         reception_text = ytr.translate(params["text"], params["original_lang"]+"-en")
         c1_client.send_push(
