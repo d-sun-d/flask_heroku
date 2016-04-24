@@ -30,20 +30,22 @@ def path_microtrack_add():
         staff_text = ytr.translate(params["text"], params["original_lang"]+"-tg")
         c1_client.send_push(
             "StaffAccorDemoBot",
-            ["N: "+str(id) +"\n\n"+ staff_text], keybord=[["Done"]])
+            ["N: "+str(id) +"\nRoom:"+str(params.get("room"))+"\n\n"+ staff_text], keybord=[["Done"]])
 
         reception_text = ytr.translate(params["text"], params["original_lang"]+"-en")
         c1_client.send_push(
             "ReceptionAccorDemoBot",
-            [reception_text, "original lang="+params["original_lang"],
-             params["text"], " id:"+str(id)])
+            ["N: "+str(id) +"\nRoom:"+str(params.get("room"))+"\n\nEN: "+\
+             reception_text + "\n\nORIG-LANG:"+params["original_lang"]+"\nORIG:"+\
+             params["text"] ])
 
     if params["category"] == "reception":
         reception_text = ytr.translate(params["text"], params["original_lang"]+"-en")
         c1_client.send_push(
             "ReceptionAccorDemoBot",
-            [reception_text, "original lang="+params["original_lang"], params["text"],
-             " id:"+str(id)])
+            ["N: "+str(id) +"\nRoom:"+str(params.get("room"))+"\n\nEN: "+\
+             reception_text + "\n\nORIG-LANG:"+params["original_lang"]+"\nORIG:"+\
+             params["text"] ])
 
 
     print "start save"
