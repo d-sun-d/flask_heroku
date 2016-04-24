@@ -1,3 +1,6 @@
+import json
+import requests
+
 class ActionResponse(object):
     def __init__(self):
         self.count = 0
@@ -14,3 +17,22 @@ class ActionResponse(object):
         res['ForcedKeyboard'] = self.keyboard
         res['Entities'] = self.entities
         return res
+
+
+
+def send_push(botname = "StaffAccorDemoBot", message=[]):
+    data = {}
+    headers = {}
+    headers['Authorization'] = "Basic MzM4RkM1MzFGMzk4N0E1MTA4RkM0RTUzNzg2QUUwQjQwRUM0NjNCODo="
+    headers["Content-Type"] = "application/json"
+    data['Count'] = 1
+    data['Messages'] = message
+    data['ForcedState'] = None
+    data['ForcedKeyboard'] = None
+    params = {}
+    params["id"] = 1298445
+    params["channel"] = "telegram"
+
+    res = requests.post("https://ch-message-processor-test.azurewebsites.net/v1/push/ReceptionAccorDemoBot",headers=headers, data=json.dumps(data), params=params)
+    print res.url
+    print res.status_code

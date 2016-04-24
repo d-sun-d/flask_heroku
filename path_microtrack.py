@@ -25,6 +25,17 @@ def path_microtrack_add():
     new_task_text = ytr.translate("Персонал оповещен, выполним в ближайшее время.\n\n  Номер вашей заявки ", params["original_lang"])
     response.messages.append(new_task_text+" id:"+str(id))
 
+    if params["category"] == "service":
+        staff_text = ytr.translate(params["text"], params["original_lang"]+"-tg")
+        c1_client.send_push("StaffAccorDemoBot", [staff_text, str(id)])
+    if params["category"] == "reception":
+        staff_text = ytr.translate(params["text"], params["original_lang"]+"-tg")
+        c1_client.send_push("StaffAccorDemoBot", [staff_text, str(id)])
+
+        reception_text = ytr.translate(params["text"], params["original_lang"]+"-en")
+        c1_client.send_push("ReceptionAccorDemoBot", [reception_text, "original lang="+params["original_lang"], params["text"], str(id)])
+
+
     print "start save"
     cache.save_db(redis_db)
     print "end save"
