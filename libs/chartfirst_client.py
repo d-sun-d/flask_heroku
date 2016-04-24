@@ -33,6 +33,6 @@ def send_push(botname = "StaffAccorDemoBot", message=[]):
     params["id"] = 1298445
     params["channel"] = "telegram"
 
-    res = requests.post("https://ch-message-processor-test.azurewebsites.net/v1/push/ReceptionAccorDemoBot",headers=headers, data=json.dumps(data), params=params)
+    res = requests.post("https://ch-message-processor-test.azurewebsites.net/v1/push/"+botname,headers=headers, data=json.dumps(data), params=params)
     print res.url
     print res.status_code
