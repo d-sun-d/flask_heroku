@@ -36,7 +36,7 @@ def path_microtrack_add():
         c1_client.send_push(
             "ReceptionAccorDemoBot",
             ["N: "+str(id) +"\nRoom:"+str(params.get("room"))+"\n\nEN: "+\
-             reception_text + "\n\nORIG-LANG:"+params["original_lang"]+"\nORIG:"+\
+             reception_text + "\n\nORIG-LANG: "+params["original_lang"]+"\nORIG: "+\
              params["text"] ])
 
     if params["category"] == "reception":
@@ -44,7 +44,7 @@ def path_microtrack_add():
         c1_client.send_push(
             "ReceptionAccorDemoBot",
             ["N: "+str(id) +"\nRoom:"+str(params.get("room"))+"\n\nEN: "+\
-             reception_text + "\n\nORIG-LANG:"+params["original_lang"]+"\nORIG:"+\
+             reception_text + "\n\nORIG-LANG: "+params["original_lang"]+"\nORIG: "+\
              params["text"] ])
 
 
