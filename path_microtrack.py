@@ -64,7 +64,7 @@ def path_microtask_change_state():
     elif params["newstate"] == "done":
         c1_client.send_push(
             "ReceptionAccorDemoBot",
-            ["done microtask id="+params["taskid"]])
+            ["Task "+params["taskid"]+" done"])
         text = u"Ваша заявка id="+params["taskid"]+u" решена.\n\n"+\
                                            u"Если Ваша проблема решена не полностью, отправьте /help"+params["taskid"]
         client_result_text = ytr.translate(text, "ru-"+task_info["original_lang"])
