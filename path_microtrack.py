@@ -68,7 +68,7 @@ def path_microtask_change_state():
                                            u"\n\nЕсли ваша проблема еще не решена отправте \\reopen id="+params["taskid"]
         client_result_text = ytr.translate(text, "ru-"+task_info["original_lang"])
         c1_client.send_push(
-            "AccorDemoIntroBot",
+            "AccorDemoIntro",
             [client_result_text],
             task_info.get("id", 1298445)
         )
