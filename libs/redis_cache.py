@@ -10,7 +10,7 @@ REDIS_URL = "redis://h:pvc0s3mj8bjj9em016172mohj9@ec2-54-83-34-248.compute-1.ama
 
 REDIS_DB_TEMPLATE = {
     "tasks":{},
-    "last_id":0
+    "last_id":175
 }
 
 class CacheService:
@@ -55,3 +55,6 @@ class CacheService:
         except:
             print "Error on redis write"
             print traceback.format_exc()
+
+    def cleanup_db(self):
+        self.save_db(REDIS_DB_TEMPLATE)

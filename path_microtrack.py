@@ -4,14 +4,10 @@ from flask import render_template, jsonify, make_response
 from flask import request
 import libs.yandex_translate as ytr
 import libs.chartfirst_client as c1_client
-from libs.redis_cache import CacheService
+from libs.redis_cache import CacheService, REDIS_DB_TEMPLATE
 import pprint
 
 
-redis_db = {
-    "tasks":{},
-    "last_id":0
-}
 
 def path_microtrack_add():
     cache = CacheService()
@@ -36,6 +32,8 @@ def path_microtrack_add():
 
 
 def path_get_db():
+    cache = CacheService()
+    redis_db = cache.get_db()
     response = c1_client.ActionResponse()
     response.messages.append(pprint.pformat(redis_db))
     return make_response(jsonify(response.to_dict()), 200)

@@ -11,6 +11,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 from path_route import path_route
 from path_microtrack import path_get_db, path_microtrack_add
+from libs.redis_cache import CacheService
 
 app = Flask(__name__)
 
@@ -42,6 +43,12 @@ def route_add_task():
 
 @app.route('/microtask/get_db')
 def route_get_db():
+    return path_get_db()
+
+@app.route('/microtask/cleanup_db')
+def route_cleanup_db():
+    cache = CacheService()
+    cache.cleanup_db()
     return path_get_db()
 
 
