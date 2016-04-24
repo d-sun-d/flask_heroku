@@ -64,8 +64,7 @@ def path_microtask_change_state():
             "ReceptionAccorDemoBot",
             ["done microtask id="+params["taskid"]])
         text = u"Ваша заявка id="+params["taskid"]+u" решена.\n\n"+\
-                                           u"Если мы решиииили вашу проблему отправте \\done id="+params["taskid"]+\
-                                           u"\n\nЕсли ваша проблема еще не решена отправте \\reopen id="+params["taskid"]
+                                           u"\n\nЕсли Ваша проблема решена не полностью, отправте /help"+params["taskid"]
         client_result_text = ytr.translate(text, "ru-"+task_info["original_lang"])
         c1_client.send_push(
             "AccorDemoIntro",
