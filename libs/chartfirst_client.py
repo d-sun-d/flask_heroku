@@ -20,7 +20,8 @@ class ActionResponse(object):
 
 
 
-def send_push(botname = "StaffAccorDemoBot", messages=[], recever_id=1298445):
+def send_push(botname = "StaffAccorDemoBot", messages=[], recever_id=1298445,
+              keybord=None):
     data = {}
     headers = {}
     headers['Authorization'] = "Basic MzM4RkM1MzFGMzk4N0E1MTA4RkM0RTUzNzg2QUUwQjQwRUM0NjNCODo="
@@ -28,7 +29,7 @@ def send_push(botname = "StaffAccorDemoBot", messages=[], recever_id=1298445):
     data['Count'] = 1
     data['Messages'] = messages
     data['ForcedState'] = None
-    data['ForcedKeyboard'] = None
+    data['ForcedKeyboard'] = keybord
     params = {}
     params["id"] = int(recever_id)
     params["channel"] = "telegram"
